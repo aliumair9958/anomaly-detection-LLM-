@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: anomaly-detection
+  namespace: anomaly-detection
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: anomaly-detection
+  template:
+    metadata:
+      labels:
+        app: anomaly-detection
+    spec:
+      containers:
+      - name: anomaly-detection
+        image: aliumair9958/anomaly-detection:latest
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
